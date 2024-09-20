@@ -16,7 +16,10 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
-  content: z.string().min(10).max(500),
+  content: z
+    .string()
+    .min(10, "Content is too short")
+    .max(500, "Content is too long"),
 });
 
 const DiaryForm = () => {
@@ -33,10 +36,7 @@ const DiaryForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="container mx-auto"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 container">
         <FormField
           control={form.control}
           name="content"
@@ -44,7 +44,7 @@ const DiaryForm = () => {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Textarea {...field} className="w-1/2" />
+                <Textarea {...field} />
               </FormControl>
               <FormDescription>
                 Write your daily thoughts here. (10 - 500 characters)
