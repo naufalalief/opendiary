@@ -2,9 +2,9 @@
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 
-const NavbarButton = () => {
+const NavbarButton = (): React.ReactElement => {
   const { isLoaded, isSignedIn } = useUser();
-  if (!isLoaded) return null;
+  if (!isLoaded) return <div />;
 
   return isSignedIn ? (
     <div className="flex items-center space-x-4">
