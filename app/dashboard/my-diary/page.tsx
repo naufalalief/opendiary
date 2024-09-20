@@ -1,11 +1,10 @@
-import DiaryForm from "@/components/dashboard/DiaryForm";
 import Wrapper from "@/components/shared/Wrapper";
 import React from "react";
 
-const page = (): React.ReactNode => {
+const page = () => {
   return (
     <Wrapper title="My Diary">
-      <DiaryForm />
+      <p>this is my diary</p>
     </Wrapper>
   );
 };

@@ -9,10 +9,10 @@ const NavbarButton = (): React.ReactElement => {
   return isSignedIn ? (
     <div className="flex items-center space-x-4">
       <Button variant={"link"} className="text-white">
-        <a href="/create-diary">Dashboard</a>
+        <a href="/dashboard">Create Diary</a>
       </Button>
       <Button variant={"link"} className="text-white">
-        <a href="/my-diary">My Diary</a>
+        <a href="/dashboard/my-diary">My Diary</a>
       </Button>
       <UserButton />
     </div>
