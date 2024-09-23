@@ -14,29 +14,33 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-
-const formSchema = z.object({
-  content: z
-    .string()
-    .min(10, "Content is too short")
-    .max(500, "Content is too long"),
-});
+import { useRouter } from "next/navigation";
+import { formSchema, FormSchemaType } from "./diaryFormSchema";
+import { onSubmit } from "@/app/actions/diaryFormAction";
 
 const DiaryForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const router = useRouter();
+  const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       content: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
-  }
+  // function onSubmit(data: FormSchemaType) {
+  //   console.log(data);
+  //   router.push("/dashboard/my-diary");
+  // }
+
+  // const onSubmit = async (data: FormData) => {
+  //   "use server";
+  //   const content = data.get("content");
+  //   console.log(content);
+  // };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 container">
+      <form action={onSubmit} className="w-1/3 container">
         <FormField
           control={form.control}
           name="content"
