@@ -1,25 +1,22 @@
 "use client";
-import { Progress } from "@/components/ui/progress";
-import React, { useState, useEffect } from "react";
+import { CSSProperties, FC, useState } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
 
-const Loading = (): React.ReactNode => {
-  const [progress, setProgress] = useState(0);
+const Loading: FC = () => {
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#D0E8FF");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prevProgress + 10;
-      });
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return <Progress value={progress} />;
+  return (
+    <div className="">
+      <BeatLoader
+        color={color}
+        loading={loading}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  );
 };
 
 export default Loading;

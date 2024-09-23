@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   darkMode: ["class"],
@@ -13,6 +14,11 @@ const config: Config = {
       padding: "2rem",
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        geistSans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        geistMono: ["var(--font-geist-mono)", ...fontFamily.mono],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

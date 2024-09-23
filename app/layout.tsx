@@ -3,6 +3,14 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Montserrat } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const fontSans = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -28,7 +36,12 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider afterSignOutUrl={"/"}>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={cn(
+            "antialiased min-h-screen font-sans",
+            fontSans.variable,
+            geistSans.variable,
+            geistMono.variable
+          )}
         >
           <Navbar />
           {children}
